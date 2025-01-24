@@ -7,9 +7,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background: linear-gradient(135deg, #8A2BE2, #FF00FF); /* Degradado de violeta a fucsia */
+            background-size: 400% 400%; /* Aumentamos el tamaño del fondo para que se vea más grande */
+            animation: gradientAnimation 10s ease infinite; /* Animación para mover el degradado */
             text-align: center;
             padding: 50px;
+            color: white; /* Asegurar que el texto sea visible sobre el fondo */
         }
 
         h1, h2 {
@@ -19,7 +22,6 @@
 
         .frases {
             font-size: 1.5em;
-            color: #333;
             margin-top: 40px;
             display: none; /* Ocultar todas las frases inicialmente */
         }
@@ -37,6 +39,7 @@
             width: 80%;
             margin-top: 40px;
             height: 400px; /* Ajusta la altura según el tamaño de tus imágenes */
+            margin: 0 auto; /* Centra el carrusel en la página */
         }
 
         .carousel-images {
@@ -79,6 +82,19 @@
 
         .prev:hover, .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Animación para el fondo */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
     </style>
 </head>
