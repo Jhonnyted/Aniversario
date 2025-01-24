@@ -73,16 +73,12 @@
         width: 100%;
         height: 100%;
         object-fit: cover; /* Hace que la imagen mantenga su proporción */
-        transition: opacity 1s ease-in-out;
+        opacity: 0;
+        transition: opacity 1s ease-in-out; /* Transición de opacidad */
       }
 
       .carousel img.active {
-        display: block;
-        opacity: 1;
-      }
-
-      .carousel img:not(.active) {
-        opacity: 0;
+        opacity: 1; /* Solo la imagen activa es visible */
       }
 
       .phrase {
@@ -138,9 +134,9 @@
       let currentIndex = 0;
 
       function changeImage() {
-        images[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].classList.add('active');
+        images[currentIndex].classList.remove('active'); // Ocultar imagen actual
+        currentIndex = (currentIndex + 1) % images.length; // Siguiente imagen (circular)
+        images[currentIndex].classList.add('active'); // Mostrar imagen siguiente
       }
 
       setInterval(changeImage, 3000); // Cambiar imagen cada 3 segundos
