@@ -56,6 +56,7 @@
       }
 
       .carousel img {
+        position: absolute; /* Apilan las imágenes una encima de la otra */
         width: 100%;
         display: block;
         transition: opacity 1s ease-in-out;
@@ -170,6 +171,7 @@
       }
 
       setInterval(changePhrase, 4000); // Cambiar frase cada 4 segundos
+      setTimeout(showCarousel, 28000); // Mostrar el carrusel después de 28 segundos
     </script>
   </body>
 </html>
