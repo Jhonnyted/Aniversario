@@ -55,22 +55,19 @@
         overflow: hidden;
       }
 
-      /* Marco circular y difuminado en las imágenes */
+      /* Marco circular y bordes difuminados */
       .carousel img {
         width: 100%;
         display: none;
         transition: opacity 1s ease-in-out;
         border-radius: 50%; /* Hace la imagen circular */
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra difusa alrededor de la imagen */
-        filter: blur(0px); /* Inicialmente sin difuminar */
-        transition: filter 1s ease-in-out, box-shadow 1s ease-in-out; /* Transición suave */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Sombra suave alrededor */
       }
 
       .carousel img.active {
         display: block;
         opacity: 1;
-        filter: blur(3px); /* Difumina la imagen cuando está activa */
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.7); /* Aumenta la difuminación alrededor de la imagen activa */
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Sombra más difusa para imagen activa */
       }
 
       .carousel img:not(.active) {
