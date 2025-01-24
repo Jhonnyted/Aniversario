@@ -8,11 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #8A2BE2, #FF00FF); /* Degradado de violeta a fucsia */
-            background-size: 400% 400%; /* Aumentamos el tamaño del fondo para que se vea más grande */
-            animation: gradientAnimation 10s ease infinite; /* Animación para mover el degradado */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
             text-align: center;
             padding: 50px;
-            color: white; /* Asegurar que el texto sea visible sobre el fondo */
+            color: white;
         }
 
         h1, h2 {
@@ -23,7 +23,7 @@
         .frases {
             font-size: 1.5em;
             margin-top: 40px;
-            display: none; /* Ocultar todas las frases inicialmente */
+            display: none;
         }
 
         .frases-container {
@@ -32,32 +32,36 @@
 
         .carousel {
             position: relative;
-            width: 80%;
-            height: 400px; /* Altura fija para el carrusel */
+            width: 100%; /* Permite que el carrusel use el ancho completo */
+            max-width: 800px; /* Define un ancho máximo para el carrusel */
+            height: 500px; /* Altura fija para el carrusel */
             margin: 40px auto; /* Centra el carrusel */
-            overflow: hidden; /* Esconde las imágenes fuera del área visible */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden; /* Oculta el contenido fuera del área del carrusel */
+        }
+
+        .carousel-images {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         .carousel-images img {
-            max-width: 100%;
-            max-height: 100%; /* Asegura que las imágenes no se desborden del contenedor */
-            object-fit: contain; /* Ajusta las imágenes dentro del contenedor sin recortarlas */
-            border-radius: 10px;
-            opacity: 0;
-            transform: scale(0.9); /* Inicialmente la imagen será más pequeña */
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-            position: absolute; /* Superpone las imágenes para mostrar una a la vez */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: auto; /* Ajusta automáticamente el ancho */
+            height: auto; /* Ajusta automáticamente la altura */
+            max-width: 100%; /* No exceder el ancho del contenedor */
+            max-height: 100%; /* No exceder la altura del contenedor */
+            transform: translate(-50%, -50%); /* Centra las imágenes */
+            opacity: 0; /* Oculta las imágenes inicialmente */
+            transition: opacity 1s ease-in-out; /* Transición suave al cambiar imágenes */
         }
 
         .carousel-images img.active {
-            opacity: 1;
-            transform: scale(1); /* La imagen activa se muestra a su tamaño normal */
+            opacity: 1; /* Muestra la imagen activa */
         }
 
-        /* Animación para el fondo */
         @keyframes gradientAnimation {
             0% {
                 background-position: 0% 50%;
@@ -107,16 +111,16 @@
         frases[currentFrase].style.display = 'block';
 
         setInterval(() => {
-            frases[currentFrase].style.display = 'none'; // Ocultar la frase actual
-            currentFrase = (currentFrase + 1) % totalFrases; // Pasar a la siguiente frase
-            frases[currentFrase].style.display = 'block'; // Mostrar la nueva frase
+            frases[currentFrase].style.display = 'none';
+            currentFrase = (currentFrase + 1) % totalFrases;
+            frases[currentFrase].style.display = 'block';
         }, 3000); // Cambiar cada 3 segundos
 
         // Carrusel de imágenes con efecto de desvanecimiento automático
         setInterval(() => {
-            images[currentIndex].classList.remove('active'); // Eliminar la clase 'active' de la imagen actual
-            currentIndex = (currentIndex + 1) % totalImages; // Cambiar a la siguiente imagen
-            images[currentIndex].classList.add('active'); // Agregar la clase 'active' a la nueva imagen
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].classList.add('active');
         }, 4000); // Cambiar cada 4 segundos
     </script>
 
