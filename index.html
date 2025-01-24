@@ -55,30 +55,23 @@
         overflow: hidden;
       }
 
-      /* Contenedor circular */
-      .carousel-item {
-        width: 100%;
-        height: 0;
-        padding-bottom: 100%; /* Esto hace el contenedor cuadrado con relación 1:1 */
-        position: relative;
-        border-radius: 50%; /* Hace el contenedor circular */
-        overflow: hidden;
-        display: inline-block;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Borde difuso */
-      }
-
-      /* Imágenes ajustadas dentro del contenedor circular */
+      /* Marco circular y bordes difuminados */
       .carousel img {
-        position: absolute;
         width: 100%;
-        height: 100%;
-        object-fit: cover; /* Hace que la imagen mantenga su proporción */
-        opacity: 0;
-        transition: opacity 1s ease-in-out; /* Transición de opacidad */
+        display: none;
+        transition: opacity 1s ease-in-out;
+        border-radius: 50%; /* Hace la imagen circular */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Sombra suave alrededor */
       }
 
       .carousel img.active {
-        opacity: 1; /* Solo la imagen activa es visible */
+        display: block;
+        opacity: 1;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Sombra más difusa para imagen activa */
+      }
+
+      .carousel img:not(.active) {
+        opacity: 0;
       }
 
       .phrase {
@@ -103,21 +96,11 @@
     </header>
 
     <div class="carousel">
-      <div class="carousel-item">
-        <img src="Foto1.jpg" alt="Pareja celebrando el aniversario" class="active">
-      </div>
-      <div class="carousel-item">
-        <img src="Foto2.jpg" alt="Foto romántica 2">
-      </div>
-      <div class="carousel-item">
-        <img src="Foto3.jpg" alt="Foto romántica 3">
-      </div>
-      <div class="carousel-item">
-        <img src="Foto4.jpg" alt="Foto romántica 4">
-      </div>
-      <div class="carousel-item">
-        <img src="Foto5.jpg" alt="Foto romántica 5">
-      </div>
+      <img src="Foto1.jpg" alt="Pareja celebrando el aniversario" class="active">
+      <img src="Foto2.jpg" alt="Foto romántica 2">
+      <img src="Foto3.jpg" alt="Foto romántica 3">
+      <img src="Foto4.jpg" alt="Foto romántica 4">
+      <img src="Foto5.jpg" alt="Foto romántica 5">
     </div>
 
     <div class="phrase">
@@ -134,9 +117,9 @@
       let currentIndex = 0;
 
       function changeImage() {
-        images[currentIndex].classList.remove('active'); // Ocultar imagen actual
-        currentIndex = (currentIndex + 1) % images.length; // Siguiente imagen (circular)
-        images[currentIndex].classList.add('active'); // Mostrar imagen siguiente
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
       }
 
       setInterval(changeImage, 3000); // Cambiar imagen cada 3 segundos
