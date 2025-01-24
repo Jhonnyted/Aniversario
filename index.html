@@ -10,14 +10,31 @@
             background: linear-gradient(135deg, #8A2BE2, #FF00FF); /* Degradado de violeta a fucsia */
             background-size: 400% 400%;
             animation: gradientAnimation 10s ease infinite;
-            text-align: center;
-            padding: 50px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Altura mínima para centrar verticalmente */
             color: white;
+            text-align: center;
         }
 
         h1, h2 {
+            margin: 20px 0;
+            animation: heartbeat 2.5s infinite; /* Efecto de palpitar más lento */
+        }
+
+        h1 {
+            font-size: 4em;
+        }
+
+        h2 {
             font-size: 3em;
-            margin: 20px;
+        }
+
+        .frases-container {
+            margin-top: 30px;
         }
 
         .frases {
@@ -26,17 +43,13 @@
             display: none;
         }
 
-        .frases-container {
-            margin-top: 30px;
-        }
-
         .carousel {
             position: relative;
-            width: 100%; /* Permite que el carrusel use el ancho completo */
-            max-width: 800px; /* Define un ancho máximo para el carrusel */
-            height: 500px; /* Altura fija para el carrusel */
-            margin: 40px auto; /* Centra el carrusel */
-            overflow: hidden; /* Oculta el contenido fuera del área del carrusel */
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 40px auto;
+            overflow: hidden;
         }
 
         .carousel-images {
@@ -49,17 +62,17 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: auto; /* Ajusta automáticamente el ancho */
-            height: auto; /* Ajusta automáticamente la altura */
-            max-width: 100%; /* No exceder el ancho del contenedor */
-            max-height: 100%; /* No exceder la altura del contenedor */
-            transform: translate(-50%, -50%); /* Centra las imágenes */
-            opacity: 0; /* Oculta las imágenes inicialmente */
-            transition: opacity 1s ease-in-out; /* Transición suave al cambiar imágenes */
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
         .carousel-images img.active {
-            opacity: 1; /* Muestra la imagen activa */
+            opacity: 1;
         }
 
         @keyframes gradientAnimation {
@@ -71,6 +84,21 @@
             }
             100% {
                 background-position: 0% 50%;
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1); /* Tamaño normal */
+            }
+            25% {
+                transform: scale(1.1); /* Ligeramente más grande */
+            }
+            50% {
+                transform: scale(0.9); /* Ligeramente más pequeño */
+            }
+            75% {
+                transform: scale(1.05); /* Tamaño intermedio */
             }
         }
     </style>
