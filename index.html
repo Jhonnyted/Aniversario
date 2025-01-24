@@ -12,7 +12,7 @@
         text-align: center;
         background: linear-gradient(135deg, #8e44ad, #f39c12); /* Difuminado violeta a rosa */
         color: #333;
-        transition: background 1s ease-in-out; /* Transición suave al cambiar imágenes */
+        transition: background 1s ease-in-out;
       }
 
       header {
@@ -21,18 +21,16 @@
         padding: 1.5rem;
       }
 
-      /* Estilo para "Feliz Aniversario" y "Mi Amor" */
       header h1, header h2 {
         margin: 0;
         font-size: 3rem;
         font-weight: bold;
-        animation: palpitar 2s infinite; /* Animación de pulso más suave */
+        animation: palpitar 2s infinite;
       }
 
-      /* Margen adicional para "Mi Amor" */
       header h2 {
         margin-top: 10px;
-        color: #f8c291; /* Color diferente */
+        color: #f8c291;
       }
 
       @keyframes palpitar {
@@ -40,10 +38,10 @@
           transform: scale(1);
         }
         50% {
-          transform: scale(1.2); /* Aumentar tamaño */
+          transform: scale(1.2);
         }
         100% {
-          transform: scale(1); /* Reducir tamaño */
+          transform: scale(1);
         }
       }
 
@@ -55,30 +53,40 @@
         overflow: hidden;
       }
 
-      /* Marco circular y bordes difuminados */
       .carousel img {
         width: 100%;
         display: none;
         transition: opacity 1s ease-in-out;
-        border-radius: 50%; /* Hace la imagen circular */
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Sombra suave alrededor */
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
       }
 
       .carousel img.active {
         display: block;
         opacity: 1;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Sombra más difusa para imagen activa */
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
       }
 
       .carousel img:not(.active) {
         opacity: 0;
       }
 
-      .phrase {
+      .phrase-container {
         margin-top: 20px;
+      }
+
+      .phrase {
+        display: none;
         font-size: 1.5rem;
         color: white;
         font-style: italic;
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+      }
+
+      .phrase.active {
+        display: block;
+        opacity: 1;
       }
 
       footer {
@@ -103,8 +111,15 @@
       <img src="Foto5.jpg" alt="Foto romántica 5">
     </div>
 
-    <div class="phrase">
-      "Cada momento a tu lado es un regalo que atesoro para siempre."
+    <!-- Frases con efectos de aparición -->
+    <div class="phrase-container">
+      <div class="phrase active">Eres mi todo, hoy y siempre.</div>
+      <div class="phrase">Cada día a tu lado es un regalo.</div>
+      <div class="phrase">Gracias por ser mi compañera de vida.</div>
+      <div class="phrase">Cada momento contigo es especial.</div>
+      <div class="phrase">Gracias por llenar mi vida de amor.</div>
+      <div class="phrase">Eres incluso mejor de lo que soñé.</div>
+      <div class="phrase">Cada pedacito de ti encaja conmigo.</div>
     </div>
 
     <footer>
@@ -112,17 +127,29 @@
     </footer>
 
     <script>
-      // Código para hacer el carrusel
+      // Código para hacer el carrusel de imágenes
       const images = document.querySelectorAll('.carousel img');
-      let currentIndex = 0;
+      let currentImageIndex = 0;
 
       function changeImage() {
-        images[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].classList.add('active');
+        images[currentImageIndex].classList.remove('active');
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        images[currentImageIndex].classList.add('active');
       }
 
       setInterval(changeImage, 3000); // Cambiar imagen cada 3 segundos
+
+      // Código para mostrar las frases una por una
+      const phrases = document.querySelectorAll('.phrase');
+      let currentPhraseIndex = 0;
+
+      function changePhrase() {
+        phrases[currentPhraseIndex].classList.remove('active');
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        phrases[currentPhraseIndex].classList.add('active');
+      }
+
+      setInterval(changePhrase, 4000); // Cambiar frase cada 4 segundos
     </script>
   </body>
 </html>
