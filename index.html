@@ -55,17 +55,22 @@
         overflow: hidden;
       }
 
-      /* Marco de corazón para las imágenes usando una imagen en forma de corazón */
+      /* Marco circular y difuminado en las imágenes */
       .carousel img {
         width: 100%;
         display: none;
         transition: opacity 1s ease-in-out;
-        clip-path: polygon(50% 0%, 61% 5%, 71% 15%, 79% 25%, 83% 37%, 83% 50%, 79% 62%, 71% 75%, 61% 87%, 50% 100%, 39% 87%, 29% 75%, 21% 62%, 17% 50%, 17% 37%, 21% 25%, 29% 15%, 39% 5%);
+        border-radius: 50%; /* Hace la imagen circular */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra difusa alrededor de la imagen */
+        filter: blur(0px); /* Inicialmente sin difuminar */
+        transition: filter 1s ease-in-out, box-shadow 1s ease-in-out; /* Transición suave */
       }
 
       .carousel img.active {
         display: block;
         opacity: 1;
+        filter: blur(3px); /* Difumina la imagen cuando está activa */
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.7); /* Aumenta la difuminación alrededor de la imagen activa */
       }
 
       .carousel img:not(.active) {
