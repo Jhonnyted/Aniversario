@@ -21,13 +21,7 @@
             font-size: 1.5em;
             color: #333;
             margin-top: 40px;
-            animation: fadeIn 3s ease-in-out infinite;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
+            display: none; /* Ocultar todas las frases inicialmente */
         }
 
         .frases-container {
@@ -101,31 +95,4 @@
         </div>
         <div class="carousel-controls">
             <div class="prev" onclick="moveSlide(-1)">&#10094;</div>
-            <div class="next" onclick="moveSlide(1)">&#10095;</div>
-        </div>
-    </div>
-
-    <script>
-        let currentIndex = 0;
-        const frases = document.querySelectorAll('.frases');
-        const carouselImages = document.getElementById('carouselImages');
-        const totalFrases = frases.length;
-
-        // Mostrar frases con efecto
-        let currentFrase = 0;
-        setInterval(() => {
-            frases.forEach((frase, index) => {
-                frase.style.display = index === currentFrase ? 'block' : 'none';
-            });
-            currentFrase = (currentFrase + 1) % totalFrases;
-        }, 3000); // Cambiar cada 3 segundos
-
-        // Carrusel de imágenes
-        function moveSlide(direction) {
-            currentIndex = (currentIndex + direction + 5) % 5; // Hay 5 fotos
-            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-    </script>
-
-</body>
-</html>
+            <div class="next" onclick="moveSlide(1)">&#10095;</d
