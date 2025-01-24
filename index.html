@@ -33,36 +33,26 @@
         .carousel {
             position: relative;
             width: 80%;
-            height: 400px;
+            height: 400px; /* Altura fija para el carrusel */
             margin: 40px auto; /* Centra el carrusel */
             overflow: hidden; /* Esconde las imágenes fuera del área visible */
-        }
-
-        .carousel-images {
             display: flex;
-            position: relative;
-            transition: opacity 1s ease-in-out;
-            width: 100%;
-            height: 100%;
             justify-content: center;
             align-items: center;
         }
 
         .carousel-images img {
-            width: 100%;
-            max-width: 500px; /* Controla el tamaño de las imágenes */
-            height: 100%;
-            object-fit: cover; /* Asegura que las imágenes no se deformen */
-            margin: 0 auto;
+            max-width: 100%;
+            max-height: 100%; /* Asegura que las imágenes no se desborden del contenedor */
+            object-fit: contain; /* Ajusta las imágenes dentro del contenedor sin recortarlas */
             border-radius: 10px;
             opacity: 0;
             transform: scale(0.9); /* Inicialmente la imagen será más pequeña */
             transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-            display: none; /* Las imágenes estarán ocultas por defecto */
+            position: absolute; /* Superpone las imágenes para mostrar una a la vez */
         }
 
         .carousel-images img.active {
-            display: block; /* Mostrar solo la imagen activa */
             opacity: 1;
             transform: scale(1); /* La imagen activa se muestra a su tamaño normal */
         }
