@@ -56,6 +56,38 @@
             opacity: 1;
         }
 
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-images img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-images img.active {
+            opacity: 1;
+        }
+
         @keyframes gradientAnimation {
             0% {
                 background-position: 0% 50%;
@@ -98,16 +130,36 @@
         <div class="frases" id="frase6">¡Feliz primer aniversario!</div>
     </div>
 
+    <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+            <img src="Foto1.jpg" alt="Foto 1" class="active">
+            <img src="Foto2.jpg" alt="Foto 2">
+            <img src="Foto3.jpg" alt="Foto 3">
+            <img src="Foto4.jpg" alt="Foto 4">
+            <img src="Foto5.jpg" alt="Foto 5">
+        </div>
+    </div>
+
     <script>
+        // Control de las frases
         const frases = document.querySelectorAll('.frases');
         let currentFrase = 0;
 
-        // Mostrar una frase a la vez
         setInterval(() => {
             frases[currentFrase].classList.remove('active'); // Ocultar frase actual
             currentFrase = (currentFrase + 1) % frases.length; // Siguiente frase
             frases[currentFrase].classList.add('active'); // Mostrar la siguiente
         }, 3000); // Cambiar cada 3 segundos
+
+        // Control del carrusel de imágenes
+        const images = document.querySelectorAll('.carousel-images img');
+        let currentImage = 0;
+
+        setInterval(() => {
+            images[currentImage].classList.remove('active'); // Ocultar imagen actual
+            currentImage = (currentImage + 1) % images.length; // Siguiente imagen
+            images[currentImage].classList.add('active'); // Mostrar la siguiente
+        }, 4000); // Cambiar cada 4 segundos
     </script>
 
 </body>
