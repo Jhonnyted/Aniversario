@@ -1,433 +1,72 @@
+```html
 <!DOCTYPE html>
-
-<html lang="es">
-
- <head>
-
-  <meta charset="UTF-8">
-
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>index</title>
-
-    <style>
-
- 
-
-        body {
-
- 
-
-            font-family: 'Arial', sans-serif;
-
- 
-
-            margin: 0;
-
- 
-
-            padding: 0;
-
- 
-
-            text-align: center;
-
- 
-
-            background: linear-gradient(135deg, #8e44ad, #f39c12); /* Difuminado violeta a rosa */
-
- 
-
-            color: #333;
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        header {
-
- 
-
-            background-color: rgba(255, 255, 255, 0.2);
-
- 
-
-            color: white;
-
- 
-
-            padding: 1.5rem;
-
- 
-
-        }
-
- 
-
-        
-
- 
-
-        /* Estilo para "Feliz Aniversario" y "Mi Amor" */
-
- 
-
-        header h1, header h2 {
-
- 
-
-            margin: 0;
-
- 
-
-            font-size: 3rem;
-
- 
-
-            font-weight: bold;
-
- 
-
-            animation: palpitar 1.5s infinite; /* Animación de pulso */
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        /* Margen adicional para "Mi Amor" */
-
- 
-
-        header h2 {
-
- 
-
-            margin-top: 10px;
-
- 
-
-            color: #f8c291; /* Color diferente si lo deseas */
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        @keyframes palpitar {
-
- 
-
-            0% {
-
- 
-
-                transform: scale(1);
-
- 
-
-            }
-
- 
-
-            50% {
-
- 
-
-                transform: scale(1.2); /* Aumentar tamaño */
-
- 
-
-            }
-
- 
-
-            100% {
-
- 
-
-                transform: scale(1); /* Reducir tamaño */
-
- 
-
-            }
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        .carousel {
-
- 
-
-            position: relative;
-
- 
-
-            width: 80%;
-
- 
-
-            max-width: 600px;
-
- 
-
-            margin: 20px auto;
-
- 
-
-            overflow: hidden;
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        /* Marco de corazón para las imágenes */
-
- 
-
-        .carousel img {
-
- 
-
-            width: 100%;
-
- 
-
-            display: none;
-
- 
-
-            transition: opacity 1s ease-in-out;
-
- 
-
-            clip-path: polygon(50% 0%, 61% 5%, 71% 15%, 79% 25%, 83% 37%, 83% 50%, 79% 62%, 71% 75%, 61% 87%, 50% 100%, 39% 87%, 29% 75%, 21% 62%, 17% 50%, 17% 37%, 21% 25%, 29% 15%, 39% 5%);
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        .carousel img.active {
-
- 
-
-            display: block;
-
- 
-
-            opacity: 1;
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        .carousel img:not(.active) {
-
- 
-
-            opacity: 0;
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        .phrase {
-
- 
-
-            margin-top: 20px;
-
- 
-
-            font-size: 1.5rem;
-
- 
-
-            color: white;
-
- 
-
-            font-style: italic;
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        footer {
-
- 
-
-            margin-top: 20px;
-
- 
-
-            background-color: rgba(0, 0, 0, 0.5);
-
- 
-
-            color: white;
-
- 
-
-            padding: 1rem;
-
- 
-
-        }
-
- 
-
-    </style>
-
-   </head>
-
-   <body>
-
-    <header>
-
-     <h1>Feliz Aniversario</h1>
-
-     <h2>Mi Amor</h2>
-
-    </header>
-
-    <div class="carousel">
-
-     <img src="foto1.jpg" alt="Foto 1" class="active">
-
-      <img src="foto2.jpg" alt="Foto 2">
-
-       <img src="foto3.jpg" alt="Foto 3">
-
-        <img src="foto4.jpg" alt="Foto 4">
-
-         <img src="foto5.jpg" alt="Foto 5">
-
-         </div>
-
-         <div class="phrase">
-
- 
-
-        "Cada momento a tu lado es un regalo que atesoro para siempre."
-
- 
-
-    </div>
-
-         <footer>
-
-          <p>&copy; 2025 Nuestro Aniversario. Con amor.</p>
-
-         </footer>
-
-         <script>
-
- 
-
-        // Código para hacer el carrusel
-
- 
-
-        const images = document.querySelectorAll('.carousel img');
-
- 
-
-        let currentIndex = 0;
-
- 
-
- 
-
- 
-
-        function changeImage() {
-
- 
-
-            images[currentIndex].classList.remove('active');
-
- 
-
-            currentIndex = (currentIndex + 1) % images.length;
-
- 
-
-            images[currentIndex].classList.add('active');
-
- 
-
-        }
-
- 
-
- 
-
- 
-
-        setInterval(changeImage, 3000); // Cambiar imagen cada 3 segundos
-
- 
-
-    </script>
-
-        </body>
-
-       </html>
-
- 
-
- 
+<html lang=\es\<head>
+<meta charset=\UTF-8\ <meta name=\viewport\ content=\width=device-width, initial-scale=1.0\ <title>Feliz Aniversario</title>
+<style>
+body {
+background: linear-gradient(to bottom, #FF007F, #FFA3B6);
+text-align: center;
+color: white;
+font-family: 'Arial', sans-serif;
+}
+
+h1 {
+font-size: 3em;
+animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+0%, 20%, 40%, 60%, 80%, 100% {
+transform: scale(1);
+}
+10%, 30%, 50%, 70%, 90% {
+transform: scale(1.1);
+}
+}
+
+.carousel {
+position: relative;
+width: 80%;
+margin: 0 auto;
+overflow: hidden;
+}
+
+.carousel img {
+width: 100%;
+display: none;
+}
+
+.carousel img.active {
+display: block;
+}
+
+.phrase {
+margin-top: 20px;
+font-size: 1.5em;
+}
+</style>
+</head>
+<body>
+
+<h1>Feliz Aniversario Mi Amor</h1>
+
+<div class=\carousel\ <img src=\foto1.jpg\ class=\active\ alt=\Imagen 1\ <img src=\foto2.jpg\ alt=\Imagen 2\ <img src=\foto3.jpg\ alt=\Imagen 3\ <img src=\foto4.jpg\ alt=\Imagen 4\ <img src=\foto5.jpg\ alt=\Imagen 5\ </div>
+
+<div class=\phrase\Siempre en mi corazón.</div>
+
+<script>
+let index = 0;
+const images = document.querySelectorAll('.carousel img');
+
+function showNextImage() {
+images[index].classList.remove('active');
+index = (index + 1) % images.length;
+images[index].classList.add('active');
+}
+
+setInterval(showNextImage, 5000);
+</script>
+
+</body>
+</html>
+```
