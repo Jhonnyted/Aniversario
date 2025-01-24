@@ -55,19 +55,30 @@
         overflow: hidden;
       }
 
-      /* Marco circular y bordes difuminados */
-      .carousel img {
+      /* Contenedor circular */
+      .carousel-item {
         width: 100%;
-        display: none;
+        height: 0;
+        padding-bottom: 100%; /* Esto hace el contenedor cuadrado con relación 1:1 */
+        position: relative;
+        border-radius: 50%; /* Hace el contenedor circular */
+        overflow: hidden;
+        display: inline-block;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Borde difuso */
+      }
+
+      /* Imágenes ajustadas dentro del contenedor circular */
+      .carousel img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Hace que la imagen mantenga su proporción */
         transition: opacity 1s ease-in-out;
-        border-radius: 50%; /* Hace la imagen circular */
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Sombra suave alrededor */
       }
 
       .carousel img.active {
         display: block;
         opacity: 1;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Sombra más difusa para imagen activa */
       }
 
       .carousel img:not(.active) {
@@ -96,11 +107,21 @@
     </header>
 
     <div class="carousel">
-      <img src="Foto1.jpg" alt="Pareja celebrando el aniversario" class="active">
-      <img src="Foto2.jpg" alt="Foto romántica 2">
-      <img src="Foto3.jpg" alt="Foto romántica 3">
-      <img src="Foto4.jpg" alt="Foto romántica 4">
-      <img src="Foto5.jpg" alt="Foto romántica 5">
+      <div class="carousel-item">
+        <img src="Foto1.jpg" alt="Pareja celebrando el aniversario" class="active">
+      </div>
+      <div class="carousel-item">
+        <img src="Foto2.jpg" alt="Foto romántica 2">
+      </div>
+      <div class="carousel-item">
+        <img src="Foto3.jpg" alt="Foto romántica 3">
+      </div>
+      <div class="carousel-item">
+        <img src="Foto4.jpg" alt="Foto romántica 4">
+      </div>
+      <div class="carousel-item">
+        <img src="Foto5.jpg" alt="Foto romántica 5">
+      </div>
     </div>
 
     <div class="phrase">
