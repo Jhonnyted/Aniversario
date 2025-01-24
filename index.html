@@ -29,17 +29,20 @@
         }
 
         .carousel {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             width: 80%;
             margin-top: 40px;
+            height: 400px; /* Ajusta la altura según el tamaño de tus imágenes */
         }
 
         .carousel-images {
             display: flex;
-            transition: transform 1s ease;
+            position: relative;
+            transition: opacity 1s ease-in-out;
         }
 
         .carousel-images img {
@@ -47,6 +50,14 @@
             max-width: 500px;
             margin: 0 10px;
             border-radius: 10px;
+            opacity: 0;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-images img.active {
+            opacity: 1;
+            position: relative; /* Solo la imagen activa será visible */
         }
 
         .carousel-controls {
@@ -87,12 +98,38 @@
 
     <div class="carousel">
         <div class="carousel-images" id="carouselImages">
-            <img src="Foto1.jpg" alt="Foto 1">
+            <img src="Foto1.jpg" alt="Foto 1" class="active">
             <img src="Foto2.jpg" alt="Foto 2">
             <img src="Foto3.jpg" alt="Foto 3">
             <img src="Foto4.jpg" alt="Foto 4">
             <img src="Foto5.jpg" alt="Foto 5">
         </div>
-        <div class="carousel-controls">
-            <div class="prev" onclick="moveSlide(-1)">&#10094;</div>
-            <div class="next" onclick="moveSlide(1)">&#10095;</d
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const frases = document.querySelectorAll('.frases');
+        const images = document.querySelectorAll('.carousel-images img');
+        const totalFrases = frases.length;
+        const totalImages = images.length;
+
+        // Mostrar frases una por una con efecto
+        let currentFrase = 0;
+        frases[currentFrase].style.display = 'block';
+
+        setInterval(() => {
+            frases[currentFrase].style.display = 'none'; // Ocultar la frase actual
+            currentFrase = (currentFrase + 1) % totalFrases; // Pasar a la siguiente frase
+            frases[currentFrase].style.display = 'block'; // Mostrar la nueva frase
+        }, 3000); // Cambiar cada 3 segundos
+
+        // Carrusel de imágenes con efecto de desvanecimiento automático
+        setInterval(() => {
+            images[currentIndex].classList.remove('active'); // Eliminar la clase 'active' de la imagen actual
+            currentIndex = (currentIndex + 1) % totalImages; // Cambiar a la siguiente imagen
+            images[currentIndex].classList.add('active'); // Agregar la clase 'active' a la nueva imagen
+        }, 4000); // Cambiar cada 4 segundos
+    </script>
+
+</body>
+</html>
