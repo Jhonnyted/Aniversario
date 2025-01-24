@@ -35,43 +35,24 @@
 
         .frases-container {
             margin-top: 30px;
-        }
-
-        .frases {
-            font-size: 1.5em;
-            margin-top: 40px;
-            display: none;
-        }
-
-        .carousel {
             position: relative;
             width: 100%;
             max-width: 800px;
-            height: 500px;
-            margin: 40px auto;
-            overflow: hidden;
+            height: 100px;
         }
 
-        .carousel-images {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .carousel-images img {
+        .frases {
+            font-size: 1.8em;
+            font-weight: bold;
             position: absolute;
             top: 50%;
             left: 50%;
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%;
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
-        .carousel-images img.active {
+        .frases.active {
             opacity: 1;
         }
 
@@ -109,7 +90,7 @@
     <h2>Mi Amor</h2>
 
     <div class="frases-container">
-        <div class="frases" id="frase1">Cada día a tu lado es un regalo.</div>
+        <div class="frases active" id="frase1">Cada día a tu lado es un regalo.</div>
         <div class="frases" id="frase2">Gracias por ser mi compañera de vida.</div>
         <div class="frases" id="frase3">Cada momento contigo es especial.</div>
         <div class="frases" id="frase4">Eres incluso mejor de lo que soñé.</div>
@@ -117,39 +98,16 @@
         <div class="frases" id="frase6">¡Feliz primer aniversario!</div>
     </div>
 
-    <div class="carousel">
-        <div class="carousel-images" id="carouselImages">
-            <img src="Foto1.jpg" alt="Foto 1" class="active">
-            <img src="Foto2.jpg" alt="Foto 2">
-            <img src="Foto3.jpg" alt="Foto 3">
-            <img src="Foto4.jpg" alt="Foto 4">
-            <img src="Foto5.jpg" alt="Foto 5">
-        </div>
-    </div>
-
     <script>
-        let currentIndex = 0;
         const frases = document.querySelectorAll('.frases');
-        const images = document.querySelectorAll('.carousel-images img');
-        const totalFrases = frases.length;
-        const totalImages = images.length;
-
-        // Mostrar frases una por una con efecto
         let currentFrase = 0;
-        frases[currentFrase].style.display = 'block';
 
+        // Mostrar una frase a la vez
         setInterval(() => {
-            frases[currentFrase].style.display = 'none';
-            currentFrase = (currentFrase + 1) % totalFrases;
-            frases[currentFrase].style.display = 'block';
+            frases[currentFrase].classList.remove('active'); // Ocultar frase actual
+            currentFrase = (currentFrase + 1) % frases.length; // Siguiente frase
+            frases[currentFrase].classList.add('active'); // Mostrar la siguiente
         }, 3000); // Cambiar cada 3 segundos
-
-        // Carrusel de imágenes con efecto de desvanecimiento automático
-        setInterval(() => {
-            images[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex + 1) % totalImages;
-            images[currentIndex].classList.add('active');
-        }, 4000); // Cambiar cada 4 segundos
     </script>
 
 </body>
