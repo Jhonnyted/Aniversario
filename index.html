@@ -45,6 +45,33 @@
         }
       }
 
+      /* Estilo de las frases */
+      .phrase-container {
+        margin-top: 20px;
+      }
+
+      .phrase {
+        display: none;
+        font-size: 2rem;
+        color: #f39c12; /* Color amarillo */
+        font-style: italic;
+        opacity: 0;
+        transition: opacity 2s ease-in-out, transform 1s ease-in-out;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Sombra de texto para mayor efecto */
+        padding: 1rem;
+        margin: 0 20px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo sutil */
+        transform: translateY(20px); /* Inicialmente movidas hacia abajo */
+      }
+
+      .phrase.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0); /* Efecto de subida */
+      }
+
+      /* Estilo de las imágenes del carrusel */
       .carousel {
         position: relative;
         width: 80%;
@@ -52,7 +79,7 @@
         margin: 20px auto;
         overflow: hidden;
         height: 0;
-        padding-top: 56.25%; /* Mantener una proporción de 16:9 */
+        padding-top: 56.25%; /* Proporción 16:9 */
         position: relative;
       }
 
@@ -76,24 +103,6 @@
         opacity: 0;
       }
 
-      .phrase-container {
-        margin-top: 20px;
-      }
-
-      .phrase {
-        display: none;
-        font-size: 1.5rem;
-        color: white;
-        font-style: italic;
-        opacity: 0;
-        transition: opacity 2s ease-in-out;
-      }
-
-      .phrase.active {
-        display: block;
-        opacity: 1;
-      }
-
       footer {
         margin-top: 20px;
         background-color: rgba(0, 0, 0, 0.5);
@@ -108,14 +117,6 @@
       <h2>Mi Amor</h2>
     </header>
 
-    <div class="carousel">
-      <img src="Foto1.jpg" alt="Pareja celebrando el aniversario" class="active">
-      <img src="Foto2.jpg" alt="Foto romántica 2">
-      <img src="Foto3.jpg" alt="Foto romántica 3">
-      <img src="Foto4.jpg" alt="Foto romántica 4">
-      <img src="Foto5.jpg" alt="Foto romántica 5">
-    </div>
-
     <!-- Frases con efectos de aparición -->
     <div class="phrase-container">
       <div class="phrase active">Eres mi todo, hoy y siempre.</div>
@@ -125,6 +126,15 @@
       <div class="phrase">Gracias por llenar mi vida de amor.</div>
       <div class="phrase">Eres incluso mejor de lo que soñé.</div>
       <div class="phrase">Cada pedacito de ti encaja conmigo.</div>
+    </div>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carousel">
+      <img src="Foto1.jpg" alt="Pareja celebrando el aniversario" class="active">
+      <img src="Foto2.jpg" alt="Foto romántica 2">
+      <img src="Foto3.jpg" alt="Foto romántica 3">
+      <img src="Foto4.jpg" alt="Foto romántica 4">
+      <img src="Foto5.jpg" alt="Foto romántica 5">
     </div>
 
     <footer>
