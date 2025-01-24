@@ -55,12 +55,12 @@
         overflow: hidden;
       }
 
-      /* Marco de corazón para las imágenes */
+      /* Marco de corazón para las imágenes usando una imagen en forma de corazón */
       .carousel img {
         width: 100%;
         display: none;
         transition: opacity 1s ease-in-out;
-        clip-path: path('M 50 0 C 65 0, 85 15, 85 35 C 85 55, 50 95, 50 95 C 50 95, 15 55, 15 35 C 15 15, 35 0, 50 0 Z'); /* Forma de corazón */
+        clip-path: polygon(50% 0%, 61% 5%, 71% 15%, 79% 25%, 83% 37%, 83% 50%, 79% 62%, 71% 75%, 61% 87%, 50% 100%, 39% 87%, 29% 75%, 21% 62%, 17% 50%, 17% 37%, 21% 25%, 29% 15%, 39% 5%);
       }
 
       .carousel img.active {
