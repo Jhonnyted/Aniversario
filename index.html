@@ -1,155 +1,130 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
+    <title>Feliz Aniversario</title>
     <style>
-      body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        background: linear-gradient(135deg, #8e44ad, #f39c12); /* Difuminado violeta a rosa */
-        color: #333;
-        transition: background 1s ease-in-out;
-      }
-
-      header {
-        background-color: rgba(255, 255, 255, 0.2);
-        color: white;
-        padding: 1.5rem;
-      }
-
-      header h1, header h2 {
-        margin: 0;
-        font-size: 3rem;
-        font-weight: bold;
-        animation: palpitar 2s infinite;
-      }
-
-      header h2 {
-        margin-top: 10px;
-        color: #f8c291;
-      }
-
-      @keyframes palpitar {
-        0% {
-          transform: scale(1);
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 50px;
         }
-        50% {
-          transform: scale(1.2);
+
+        h1, h2 {
+            font-size: 3em;
+            margin: 20px;
         }
-        100% {
-          transform: scale(1);
+
+        .frases {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: 40px;
+            animation: fadeIn 3s ease-in-out infinite;
         }
-      }
 
-      .carousel {
-        position: relative;
-        width: 80%;
-        max-width: 600px;
-        margin: 20px auto;
-        overflow: hidden;
-      }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
 
-      .carousel img {
-        width: 100%;
-        display: none;
-        transition: opacity 1s ease-in-out;
-        border-radius: 50%;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-      }
+        .frases-container {
+            margin-top: 30px;
+        }
 
-      .carousel img.active {
-        display: block;
-        opacity: 1;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-      }
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            width: 80%;
+            margin-top: 40px;
+        }
 
-      .carousel img:not(.active) {
-        opacity: 0;
-      }
+        .carousel-images {
+            display: flex;
+            transition: transform 1s ease;
+        }
 
-      .phrase-container {
-        margin-top: 20px;
-      }
+        .carousel-images img {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 10px;
+            border-radius: 10px;
+        }
 
-      .phrase {
-        display: none;
-        font-size: 1.5rem;
-        color: white;
-        font-style: italic;
-        opacity: 0;
-        transition: opacity 2s ease-in-out;
-      }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
 
-      .phrase.active {
-        display: block;
-        opacity: 1;
-      }
+        .prev, .next {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
 
-      footer {
-        margin-top: 20px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 1rem;
-      }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <h1>Feliz Aniversario</h1>
-      <h2>Mi Amor</h2>
-    </header>
+</head>
+<body>
+
+    <h1>Feliz Aniversario</h1>
+    <h2>Mi Amor</h2>
+
+    <div class="frases-container">
+        <div class="frases" id="frase1">Te amo más cada día.</div>
+        <div class="frases" id="frase2">Eres mi razón de ser.</div>
+        <div class="frases" id="frase3">Gracias por todo lo que me das.</div>
+        <div class="frases" id="frase4">Juntos somos invencibles.</div>
+        <div class="frases" id="frase5">Eres mi felicidad.</div>
+    </div>
 
     <div class="carousel">
-      <img src="Foto1.jpg" alt="Pareja celebrando el aniversario" class="active">
-      <img src="Foto2.jpg" alt="Foto romántica 2">
-      <img src="Foto3.jpg" alt="Foto romántica 3">
-      <img src="Foto4.jpg" alt="Foto romántica 4">
-      <img src="Foto5.jpg" alt="Foto romántica 5">
+        <div class="carousel-images" id="carouselImages">
+            <img src="Foto1.jpg" alt="Foto 1">
+            <img src="Foto2.jpg" alt="Foto 2">
+            <img src="Foto3.jpg" alt="Foto 3">
+            <img src="Foto4.jpg" alt="Foto 4">
+            <img src="Foto5.jpg" alt="Foto 5">
+        </div>
+        <div class="carousel-controls">
+            <div class="prev" onclick="moveSlide(-1)">&#10094;</div>
+            <div class="next" onclick="moveSlide(1)">&#10095;</div>
+        </div>
     </div>
-
-    <!-- Frases con efectos de aparición -->
-    <div class="phrase-container">
-      <div class="phrase active">Eres mi todo, hoy y siempre.</div>
-      <div class="phrase">Cada día a tu lado es un regalo.</div>
-      <div class="phrase">Gracias por ser mi compañera de vida.</div>
-      <div class="phrase">Cada momento contigo es especial.</div>
-      <div class="phrase">Gracias por llenar mi vida de amor.</div>
-      <div class="phrase">Eres incluso mejor de lo que soñé.</div>
-      <div class="phrase">Cada pedacito de ti encaja conmigo.</div>
-    </div>
-
-    <footer>
-      <p>&copy; 2025 Nuestro Aniversario. Con amor.</p>
-    </footer>
 
     <script>
-      // Código para hacer el carrusel de imágenes
-      const images = document.querySelectorAll('.carousel img');
-      let currentImageIndex = 0;
+        let currentIndex = 0;
+        const frases = document.querySelectorAll('.frases');
+        const carouselImages = document.getElementById('carouselImages');
+        const totalFrases = frases.length;
 
-      function changeImage() {
-        images[currentImageIndex].classList.remove('active');
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        images[currentImageIndex].classList.add('active');
-      }
+        // Mostrar frases con efecto
+        let currentFrase = 0;
+        setInterval(() => {
+            frases.forEach((frase, index) => {
+                frase.style.display = index === currentFrase ? 'block' : 'none';
+            });
+            currentFrase = (currentFrase + 1) % totalFrases;
+        }, 3000); // Cambiar cada 3 segundos
 
-      setInterval(changeImage, 3000); // Cambiar imagen cada 3 segundos
-
-      // Código para mostrar las frases una por una
-      const phrases = document.querySelectorAll('.phrase');
-      let currentPhraseIndex = 0;
-
-      function changePhrase() {
-        phrases[currentPhraseIndex].classList.remove('active');
-        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-        phrases[currentPhraseIndex].classList.add('active');
-      }
-
-      setInterval(changePhrase, 4000); // Cambiar frase cada 4 segundos
+        // Carrusel de imágenes
+        function moveSlide(direction) {
+            currentIndex = (currentIndex + direction + 5) % 5; // Hay 5 fotos
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
     </script>
-  </body>
+
+</body>
 </html>
