@@ -32,56 +32,36 @@
 
         .carousel {
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
             width: 80%;
-            margin-top: 40px;
-            height: 400px; /* Ajusta la altura según el tamaño de tus imágenes */
-            margin: 0 auto; /* Centra el carrusel en la página */
+            height: 400px;
+            margin: 40px auto; /* Centra el carrusel */
+            overflow: hidden; /* Esconde las imágenes fuera del área visible */
         }
 
         .carousel-images {
             display: flex;
             position: relative;
             transition: opacity 1s ease-in-out;
+            width: 100%;
+            height: 100%;
         }
 
         .carousel-images img {
             width: 100%;
-            max-width: 500px;
-            margin: 0 10px;
+            max-width: 500px; /* Controla el tamaño de las imágenes */
+            margin: 0 auto;
             border-radius: 10px;
             opacity: 0;
-            position: absolute;
-            transition: opacity 1s ease-in-out;
+            transform: scale(0.9); /* Inicialmente la imagen será más pequeña */
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            display: block; /* Asegura que las imágenes no se alineen horizontalmente */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .carousel-images img.active {
             opacity: 1;
-            position: relative; /* Solo la imagen activa será visible */
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .prev, .next {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1); /* La imagen activa se muestra a su tamaño normal */
         }
 
         /* Animación para el fondo */
