@@ -22,11 +22,8 @@
 
         h1, h2 {
             margin: 20px 0;
-            animation: heartbeat 2.5s infinite; /* Efecto de palpitar más lento */
-        }
-
-        h1 {
             font-size: 4em;
+            animation: heartbeat 2.5s infinite, colorChange 8s infinite; /* Cambiar color más lento (8s) */
         }
 
         h2 {
@@ -38,7 +35,7 @@
             position: relative;
             width: 100%;
             max-width: 800px;
-            height: 100px;
+            height: 150px;
         }
 
         .frases {
@@ -50,6 +47,12 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            background: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+            padding: 20px;
+            border-radius: 15px; /* Bordes redondeados */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para resaltar */
+            color: #FFF; /* Color de texto blanco */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Sombra al texto */
         }
 
         .frases.active {
@@ -113,6 +116,21 @@
             }
             75% {
                 transform: scale(1.05); /* Tamaño intermedio */
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #FF00FF; /* Fucsia */
+            }
+            33% {
+                color: #8A2BE2; /* Violeta */
+            }
+            66% {
+                color: #FF69B4; /* Rosa brillante */
+            }
+            100% {
+                color: #FF00FF; /* Vuelve al fucsia */
             }
         }
     </style>
