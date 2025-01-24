@@ -15,7 +15,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh; /* Altura mínima para centrar verticalmente */
+            min-height: 100vh;
             color: white;
             text-align: center;
         }
@@ -23,7 +23,7 @@
         h1, h2 {
             margin: 20px 0;
             font-size: 4em;
-            animation: heartbeat 2.5s infinite, colorChange 8s infinite; /* Cambiar color más lento (8s) */
+            animation: heartbeat 2.5s infinite, colorChange 8s infinite;
         }
 
         h2 {
@@ -47,12 +47,14 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 1s ease-in-out;
-            background: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
-            padding: 20px;
+            background: rgba(200, 200, 200, 0.4); /* Fondo gris claro más transparente */
+            padding: 20px 40px;
             border-radius: 15px; /* Bordes redondeados */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para resaltar */
-            color: #FFF; /* Color de texto blanco */
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Sombra al texto */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            color: #333; /* Color del texto gris oscuro */
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5); /* Sombra del texto */
+            width: 80%;
+            text-align: center;
         }
 
         .frases.active {
@@ -85,7 +87,7 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 1s ease-in-out;
-            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%); /* Difuminado en los bordes */
+            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%);
         }
 
         .carousel-images img.active {
@@ -106,31 +108,31 @@
 
         @keyframes heartbeat {
             0%, 100% {
-                transform: scale(1); /* Tamaño normal */
+                transform: scale(1);
             }
             25% {
-                transform: scale(1.1); /* Ligeramente más grande */
+                transform: scale(1.1);
             }
             50% {
-                transform: scale(0.9); /* Ligeramente más pequeño */
+                transform: scale(0.9);
             }
             75% {
-                transform: scale(1.05); /* Tamaño intermedio */
+                transform: scale(1.05);
             }
         }
 
         @keyframes colorChange {
             0% {
-                color: #FF00FF; /* Fucsia */
+                color: #FF00FF;
             }
             33% {
-                color: #8A2BE2; /* Violeta */
+                color: #8A2BE2;
             }
             66% {
-                color: #FF69B4; /* Rosa brillante */
+                color: #FF69B4;
             }
             100% {
-                color: #FF00FF; /* Vuelve al fucsia */
+                color: #FF00FF;
             }
         }
     </style>
@@ -147,6 +149,9 @@
         <div class="frases" id="frase4">Eres incluso mejor de lo que soñé.</div>
         <div class="frases" id="frase5">Cada pedacito de ti encaja conmigo.</div>
         <div class="frases" id="frase6">¡Feliz primer aniversario!</div>
+  	 <div class="frases" id="frase7">🐻😘🐥</div>
+	</div>
+	 
     </div>
 
     <div class="carousel">
@@ -165,20 +170,20 @@
         let currentFrase = 0;
 
         setInterval(() => {
-            frases[currentFrase].classList.remove('active'); // Ocultar frase actual
-            currentFrase = (currentFrase + 1) % frases.length; // Siguiente frase
-            frases[currentFrase].classList.add('active'); // Mostrar la siguiente
-        }, 3000); // Cambiar cada 3 segundos
+            frases[currentFrase].classList.remove('active');
+            currentFrase = (currentFrase + 1) % frases.length;
+            frases[currentFrase].classList.add('active');
+        }, 4000);
 
         // Control del carrusel de imágenes
         const images = document.querySelectorAll('.carousel-images img');
         let currentImage = 0;
 
         setInterval(() => {
-            images[currentImage].classList.remove('active'); // Ocultar imagen actual
-            currentImage = (currentImage + 1) % images.length; // Siguiente imagen
-            images[currentImage].classList.add('active'); // Mostrar la siguiente
-        }, 4000); // Cambiar cada 4 segundos
+            images[currentImage].classList.remove('active');
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].classList.add('active');
+        }, 4000);
     </script>
 
 </body>
