@@ -83,7 +83,6 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 2s ease-in-out;
-            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%);
         }
 
         .carousel-images img.active {
@@ -113,10 +112,10 @@
         }
 
         .message {
-            margin-top: 40px; /* Más separación de la parte inferior */
+            margin-top: 40px;
             font-size: 2.5em;
             font-weight: bold;
-            color: #FFD700; /* Amarillo dorado */
+            color: #FFD700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -125,6 +124,18 @@
         .message.active {
             opacity: 1;
             animation: pulse 1.5s infinite;
+        }
+
+        .countdown {
+            font-size: 2em;
+            color: white;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .countdown.active {
+            opacity: 1;
         }
 
         @keyframes gradientAnimation {
@@ -151,21 +162,6 @@
             }
             75% {
                 transform: scale(1.05);
-            }
-        }
-
-        @keyframes colorChange {
-            0% {
-                color: #FF00FF;
-            }
-            33% {
-                color: #8A2BE2;
-            }
-            66% {
-                color: #FF69B4;
-            }
-            100% {
-                color: #FF00FF;
             }
         }
 
@@ -205,13 +201,13 @@
 
     <div class="button-container">
         <button class="button" id="actionButton">Presiona aquí</button>
-        <div class="message" id="message">Destapa el sobre</div>
+        <div class="message" id="message">Abre el sobre</div>
+        <div class="countdown" id="countdown"></div>
     </div>
 
     <audio id="audio" src="audio.mp3"></audio>
 
     <script>
-        // Frases y carrusel
         const frases = document.querySelectorAll('.frases');
         const images = document.querySelectorAll('.carousel-images img');
         let currentFrase = 0;
@@ -229,16 +225,26 @@
             images[currentImage].classList.add('active');
         }, 4000);
 
-        // Botón interactivo
         const button = document.getElementById('actionButton');
         const message = document.getElementById('message');
+        const countdown = document.getElementById('countdown');
         const audio = document.getElementById('audio');
 
         button.addEventListener('click', () => {
             message.classList.add('active');
-            setTimeout(() => {
-                audio.play();
-            }, 5000);
+            countdown.classList.add('active');
+            let timeLeft = 5;
+            countdown.textContent = `El audio comenzará en ${timeLeft}...`;
+
+            const interval = setInterval(() => {
+                timeLeft--;
+                countdown.textContent = `El audio comenzará en ${timeLeft}...`;
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    countdown.textContent = '';
+                    audio.play();
+                }
+            }, 1000);
         });
     </script>
 
