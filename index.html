@@ -26,6 +26,10 @@
             animation: heartbeat 4s infinite, colorChange 8s infinite;
         }
 
+        h2 {
+            font-size: 3em;
+        }
+
         .frases-container {
             margin-top: 30px;
             position: relative;
@@ -83,6 +87,8 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 2s ease-in-out;
+            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%);
+            -webkit-mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%);
         }
 
         .carousel-images img.active {
@@ -165,6 +171,21 @@
             }
         }
 
+        @keyframes colorChange {
+            0% {
+                color: #FF00FF;
+            }
+            33% {
+                color: #8A2BE2;
+            }
+            66% {
+                color: #FF69B4;
+            }
+            100% {
+                color: #FF00FF;
+            }
+        }
+
         @keyframes pulse {
             0%, 100% {
                 text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
@@ -205,7 +226,7 @@
         <div class="countdown" id="countdown"></div>
     </div>
 
-    <audio id="audio" src="audio.mp3"></audio>
+    <audio id="audio" src="Audio.m4a"></audio>
 
     <script>
         const frases = document.querySelectorAll('.frases');
