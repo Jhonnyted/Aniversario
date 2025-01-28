@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Tahoma, sans-serif;
-            background: linear-gradient(50deg, #8A2BE2, #FF00FF); /* Degradado de violeta a fucsia */
+            background: linear-gradient(50deg, #8A2BE2, #FF00FF);
             background-size: 400% 400%;
             animation: gradientAnimation 8s ease infinite;
             margin: 0;
@@ -24,10 +24,6 @@
             margin: 20px 0;
             font-size: 4em;
             animation: heartbeat 4s infinite, colorChange 8s infinite;
-        }
-
-        h2 {
-            font-size: 3em;
         }
 
         .frases-container {
@@ -47,12 +43,12 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 1s ease-in-out;
-            background: rgba(200, 200, 200, 0.4); /* Fondo gris claro más transparente */
+            background: rgba(200, 200, 200, 0.4);
             padding: 20px 40px;
-            border-radius: 15px; /* Bordes redondeados */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
-            color: #333; /* Color del texto gris oscuro */
-            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5); /* Sombra del texto */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            color: #333;
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5);
             width: 80%;
             text-align: center;
         }
@@ -87,10 +83,44 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 2s ease-in-out;
-            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%);
         }
 
         .carousel-images img.active {
+            opacity: 1;
+        }
+
+        .button-container {
+            margin-top: 50px;
+        }
+
+        .button {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 15px 30px;
+            color: white;
+            background: #FF69B4;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .button:active {
+            transform: scale(0.95);
+            background: #FF1493;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .message.active {
             opacity: 1;
         }
 
@@ -143,19 +173,16 @@
     <h2>Mi Amor</h2>
 
     <div class="frases-container">
-        <div class="frases active" id="frase1">Cada día a tu lado es un regalo.</div>
-        <div class="frases" id="frase2">Gracias por ser mi compañera de vida.</div>
-        <div class="frases" id="frase3">Cada momento contigo es especial.</div>
-        <div class="frases" id="frase4">Eres incluso mejor de lo que soñé.</div>
-        <div class="frases" id="frase5">Cada pedacito de ti encaja conmigo.</div>
-        <div class="frases" id="frase6">¡Feliz primer aniversario!</div>
-  	 <div class="frases" id="frase7">🐻😘🐥</div>
-	</div>
-	 
+        <div class="frases active">Cada día a tu lado es un regalo.</div>
+        <div class="frases">Gracias por ser mi compañera de vida.</div>
+        <div class="frases">Cada momento contigo es especial.</div>
+        <div class="frases">Eres incluso mejor de lo que soñé.</div>
+        <div class="frases">Cada pedacito de ti encaja conmigo.</div>
+        <div class="frases">¡Feliz primer aniversario!</div>
     </div>
 
     <div class="carousel">
-        <div class="carousel-images" id="carouselImages">
+        <div class="carousel-images">
             <img src="Foto1.jpg" alt="Foto 1" class="active">
             <img src="Foto2.jpg" alt="Foto 2">
             <img src="Foto3.jpg" alt="Foto 3">
@@ -164,10 +191,19 @@
         </div>
     </div>
 
+    <div class="button-container">
+        <button class="button" id="actionButton">Presiona aquí</button>
+        <div class="message" id="message">Destapa el sobre</div>
+    </div>
+
+    <audio id="audio" src="audio.mp3"></audio>
+
     <script>
-        // Control de las frases
+        // Frases y carrusel
         const frases = document.querySelectorAll('.frases');
+        const images = document.querySelectorAll('.carousel-images img');
         let currentFrase = 0;
+        let currentImage = 0;
 
         setInterval(() => {
             frases[currentFrase].classList.remove('active');
@@ -175,15 +211,23 @@
             frases[currentFrase].classList.add('active');
         }, 4000);
 
-        // Control del carrusel de imágenes
-        const images = document.querySelectorAll('.carousel-images img');
-        let currentImage = 0;
-
         setInterval(() => {
             images[currentImage].classList.remove('active');
             currentImage = (currentImage + 1) % images.length;
             images[currentImage].classList.add('active');
         }, 4000);
+
+        // Botón interactivo
+        const button = document.getElementById('actionButton');
+        const message = document.getElementById('message');
+        const audio = document.getElementById('audio');
+
+        button.addEventListener('click', () => {
+            message.classList.add('active');
+            setTimeout(() => {
+                audio.play();
+            }, 5000);
+        });
     </script>
 
 </body>
