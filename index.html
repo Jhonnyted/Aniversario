@@ -142,32 +142,21 @@
         .countdown.active {
             opacity: 1;
         }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(0.9); }
-            75% { transform: scale(1.05); }
-        }
-
-        @keyframes colorChange {
-            0% { color: #FF00FF; }
-            33% { color: #8A2BE2; }
-            66% { color: #FF69B4; }
-            100% { color: #FF00FF; }
-        }
     </style>
 </head>
 <body>
 
     <h1>Feliz Aniversario</h1>
     <h2>Mi Amor</h2>
+
+    <div class="frases-container">
+        <div class="frases active">Cada día a tu lado es un regalo.</div>
+        <div class="frases">Gracias por ser mi compañera de vida.</div>
+        <div class="frases">Cada momento contigo es especial.</div>
+        <div class="frases">Eres incluso mejor de lo que soñé.</div>
+        <div class="frases">Cada pedacito de ti encaja conmigo.</div>
+        <div class="frases">¡Feliz primer aniversario!</div>
+    </div>
 
     <div class="carousel">
         <div class="carousel-images">
@@ -183,15 +172,30 @@
         </div>
     </div>
 
+    <div class="button-container">
+        <button class="button" id="actionButton">Presiona aquí</button>
+        <div class="message" id="message">Abre el sobre <br> y espera el audio </div> <br> 
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <audio id="audio" src="Audio.m4a"></audio>
+
     <script>
+        const frases = document.querySelectorAll('.frases');
         const images = document.querySelectorAll('.carousel-images img');
         const video = document.getElementById('videoSlide');
-        let currentIndex = 0;
         const elements = [...images, video];
+        let currentIndex = 0;
+        let currentFrase = 0;
+
+        setInterval(() => {
+            frases[currentFrase].classList.remove('active');
+            currentFrase = (currentFrase + 1) % frases.length;
+            frases[currentFrase].classList.add('active');
+        }, 4000);
 
         setInterval(() => {
             elements[currentIndex].classList.remove('active');
-
             if (elements[currentIndex] === video) {
                 video.pause();
                 video.currentTime = 0;
@@ -204,6 +208,28 @@
                 video.play();
             }
         }, 4000);
+
+        const button = document.getElementById('actionButton');
+        const message = document.getElementById('message');
+        const countdown = document.getElementById('countdown');
+        const audio = document.getElementById('audio');
+
+        button.addEventListener('click', () => {
+            message.classList.add('active');
+            countdown.classList.add('active');
+            let timeLeft = 10;
+            countdown.textContent = `El audio comenzará en ${timeLeft}...`;
+
+            const interval = setInterval(() => {
+                timeLeft--;
+                countdown.textContent = `El audio comenzará en ${timeLeft}...`;
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    countdown.textContent = '';
+                    audio.play();
+                }
+            }, 1000);
+        });
     </script>
 
 </body>
