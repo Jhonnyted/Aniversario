@@ -142,6 +142,37 @@
         .countdown.active {
             opacity: 1;
         }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(0.9);
+            }
+            75% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #FF00FF;
+            }
+            33% {
+                color: #8A2BE2;
+            }
+            66% {
+                color: #FF69B4;
+            }
+            100% {
+                color: #FF00FF;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -182,9 +213,7 @@
 
     <script>
         const frases = document.querySelectorAll('.frases');
-        const images = document.querySelectorAll('.carousel-images img');
-        const video = document.getElementById('videoSlide');
-        const elements = [...images, video];
+        const elements = [...document.querySelectorAll('.carousel-images img, .carousel-video')];
         let currentIndex = 0;
         let currentFrase = 0;
 
@@ -196,16 +225,16 @@
 
         setInterval(() => {
             elements[currentIndex].classList.remove('active');
-            if (elements[currentIndex] === video) {
-                video.pause();
-                video.currentTime = 0;
+            if (elements[currentIndex].tagName === "VIDEO") {
+                elements[currentIndex].pause();
+                elements[currentIndex].currentTime = 0;
             }
 
             currentIndex = (currentIndex + 1) % elements.length;
             elements[currentIndex].classList.add('active');
 
-            if (elements[currentIndex] === video) {
-                video.play();
+            if (elements[currentIndex].tagName === "VIDEO") {
+                elements[currentIndex].play();
             }
         }, 4000);
 
