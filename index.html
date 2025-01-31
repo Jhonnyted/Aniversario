@@ -65,7 +65,7 @@
             position: relative;
             width: 100%;
             max-width: 800px;
-            height: 500px; /* Altura fija del contenedor */
+            height: 500px;
             margin: 40px auto;
             overflow: hidden;
         }
@@ -76,7 +76,7 @@
             height: 100%;
         }
 
-        .carousel-images img {
+        .carousel-images img, .carousel-video {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -87,11 +87,10 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 2s ease-in-out;
-            object-fit: contain; /* Ajusta la imagen dentro del contenedor */
-            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%); /* Efecto difuminado */
+            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%);
         }
 
-        .carousel-images img.active {
+        .carousel-images img.active, .carousel-video.active {
             opacity: 1;
         }
 
@@ -145,54 +144,23 @@
         }
 
         @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.1);
-            }
-            50% {
-                transform: scale(0.9);
-            }
-            75% {
-                transform: scale(1.05);
-            }
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(0.9); }
+            75% { transform: scale(1.05); }
         }
 
         @keyframes colorChange {
-            0% {
-                color: #FF00FF;
-            }
-            33% {
-                color: #8A2BE2;
-            }
-            66% {
-                color: #FF69B4;
-            }
-            100% {
-                color: #FF00FF;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
-            }
-            50% {
-                text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.8);
-            }
+            0% { color: #FF00FF; }
+            33% { color: #8A2BE2; }
+            66% { color: #FF69B4; }
+            100% { color: #FF00FF; }
         }
     </style>
 </head>
@@ -201,16 +169,6 @@
     <h1>Feliz Aniversario</h1>
     <h2>Mi Amor</h2>
 
-    <div class="frases-container">
-        <div class="frases active">Cada día a tu lado es un regalo.</div>
-        <div class="frases">Gracias por ser mi compañera de vida.</div>
-        <div class="frases">Cada momento contigo es especial.</div>
-        <div class="frases">Eres incluso mejor de lo que soñé.</div>
-        <div class="frases">Cada pedacito de ti encaja conmigo.</div>
-        <div class="frases">¡Feliz primer aniversario!</div>
-        <div class="frases">🐻🫰🏻😘🐥</div>
-    </div>
-
     <div class="carousel">
         <div class="carousel-images">
             <img src="Foto1.jpg" alt="Foto 1" class="active">
@@ -218,56 +176,34 @@
             <img src="Foto3.jpg" alt="Foto 3">
             <img src="Foto4.jpg" alt="Foto 4">
             <img src="Foto5.jpg" alt="Foto 5">
+            <video id="videoSlide" class="carousel-video" width="100%" height="100%" muted>
+                <source src="video.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
         </div>
     </div>
 
-    <div class="button-container">
-        <button class="button" id="actionButton">Presiona aquí</button>
-        <div class="message" id="message">Abre el sobre <br> y espera el audio </div> <br> 
-        <div class="countdown" id="countdown"></div>
-    </div>
-
-    <audio id="audio" src="Audio.m4a"></audio>
-
     <script>
-        const frases = document.querySelectorAll('.frases');
         const images = document.querySelectorAll('.carousel-images img');
-        let currentFrase = 0;
-        let currentImage = 0;
+        const video = document.getElementById('videoSlide');
+        let currentIndex = 0;
+        const elements = [...images, video];
 
         setInterval(() => {
-            frases[currentFrase].classList.remove('active');
-            currentFrase = (currentFrase + 1) % frases.length;
-            frases[currentFrase].classList.add('active');
+            elements[currentIndex].classList.remove('active');
+
+            if (elements[currentIndex] === video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+
+            currentIndex = (currentIndex + 1) % elements.length;
+            elements[currentIndex].classList.add('active');
+
+            if (elements[currentIndex] === video) {
+                video.play();
+            }
         }, 4000);
-
-        setInterval(() => {
-            images[currentImage].classList.remove('active');
-            currentImage = (currentImage + 1) % images.length;
-            images[currentImage].classList.add('active');
-        }, 4000);
-
-        const button = document.getElementById('actionButton');
-        const message = document.getElementById('message');
-        const countdown = document.getElementById('countdown');
-        const audio = document.getElementById('audio');
-
-        button.addEventListener('click', () => {
-            message.classList.add('active');
-            countdown.classList.add('active');
-            let timeLeft = 20;
-            countdown.textContent = `El audio comenzará en ${timeLeft}...`;
-
-            const interval = setInterval(() => {
-                timeLeft--;
-                countdown.textContent = `El audio comenzará en ${timeLeft}...`;
-                if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    countdown.textContent = '';
-                    audio.play();
-                }
-            }, 1000);
-        });
     </script>
 
 </body>
