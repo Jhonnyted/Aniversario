@@ -218,7 +218,7 @@
             <img src="Foto3.jpg" alt="Foto 3">
             <img src="Foto4.jpg" alt="Foto 4">
             <img src="Foto5.jpg" alt="Foto 5">
-            <video id="videoSlide" class="carousel-video" width="100%" height="100%" muted >
+            <video id="videoSlide" class="carousel-video" width="100%" height="100%" muted preload="auto" >
                 <source src="Video.mp4" type="video/mp4">
                 Tu navegador no soporta videos.
             </video>
@@ -259,11 +259,7 @@
             elements[currentIndex].classList.add('active');
 
             if (elements[currentIndex].tagName === "VIDEO") {
-        const video = elements[currentIndex];  // Obtén el video actual
-        video.addEventListener('canplaythrough', () => {
-            // El video está listo para reproducirse sin interrupciones
-            video.play();
-        });
+                elements[currentIndex].play();
             }
         }, 5000);
 
