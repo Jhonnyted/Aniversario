@@ -76,7 +76,7 @@
             height: 100%;
         }
 
-        .carousel-images img {
+        .carousel-images img, .carousel-video {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -87,11 +87,11 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 2s ease-in-out;
-            object-fit: contain; /* Ajusta la imagen dentro del contenedor */
-            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%); /* Efecto difuminado */
+            mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+            -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
         }
 
-        .carousel-images img.active {
+        .carousel-images img.active, .carousel-video.active {
             opacity: 1;
         }
 
@@ -208,7 +208,7 @@
         <div class="frases">Eres incluso mejor de lo que soñé.</div>
         <div class="frases">Cada pedacito de ti encaja conmigo.</div>
         <div class="frases">¡Feliz primer aniversario!</div>
-        <div class="frases">🐻🫰🏻😘🐥</div>
+        <div class="frases">🐻😘🐥😜</div>
     </div>
 
     <div class="carousel">
@@ -218,6 +218,10 @@
             <img src="Foto3.jpg" alt="Foto 3">
             <img src="Foto4.jpg" alt="Foto 4">
             <img src="Foto5.jpg" alt="Foto 5">
+            <video id="videoSlide" class="carousel-video" width="100%" height="100%" muted>
+                <source src="Video.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
         </div>
     </div>
 
@@ -230,13 +234,13 @@
     <!-- Primer audio -->
     <audio id="audio1" src="Audio.m4a"></audio>
     <!-- Segundo audio -->
-    <audio id="audio2" src="Audio2.m4a"></audio> <!-- Cambia "Audio2.m4a" por la ruta de tu segundo audio -->
+    <audio id="audio2" src="Audio2.m4a"></audio>
 
     <script>
         const frases = document.querySelectorAll('.frases');
-        const images = document.querySelectorAll('.carousel-images img');
+        const elements = [...document.querySelectorAll('.carousel-images img, .carousel-video')];
         let currentFrase = 0;
-        let currentImage = 0;
+        let currentIndex = 0;
 
         setInterval(() => {
             frases[currentFrase].classList.remove('active');
@@ -245,9 +249,18 @@
         }, 4000);
 
         setInterval(() => {
-            images[currentImage].classList.remove('active');
-            currentImage = (currentImage + 1) % images.length;
-            images[currentImage].classList.add('active');
+            elements[currentIndex].classList.remove('active');
+            if (elements[currentIndex].tagName === "VIDEO") {
+                elements[currentIndex].pause();
+                elements[currentIndex].currentTime = 0;
+            }
+
+            currentIndex = (currentIndex + 1) % elements.length;
+            elements[currentIndex].classList.add('active');
+
+            if (elements[currentIndex].tagName === "VIDEO") {
+                elements[currentIndex].play();
+            }
         }, 4000);
 
         const button = document.getElementById('actionButton');
@@ -260,22 +273,18 @@
             message.classList.add('active');
             countdown.classList.add('active');
             let timeLeft = 20;
-            countdown.textContent = `El audio comenzará en ${timeLeft}...`;
-
             const interval = setInterval(() => {
-                timeLeft--;
                 countdown.textContent = `El audio comenzará en ${timeLeft}...`;
-                if (timeLeft <= 0) {
+                if (--timeLeft < 0) {
                     clearInterval(interval);
                     countdown.textContent = '';
                     audio1.play();
-
-                    // Reproducir el segundo audio cuando termine el primero
-                    audio1.onended = () => {
-                        audio2.play();
-                    };
                 }
             }, 1000);
+        });
+
+        audio1.addEventListener('ended', () => {
+            audio2.play();
         });
     </script>
 
