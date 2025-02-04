@@ -87,7 +87,6 @@
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 2s ease-in-out;
-            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%);
         }
 
         .carousel-images img.active, .carousel-video.active {
@@ -142,6 +141,20 @@
         .countdown.active {
             opacity: 1;
         }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(0.9); }
+            75% { transform: scale(1.05); }
+        }
+
+        @keyframes colorChange {
+            0% { color: #FF00FF; }
+            33% { color: #8A2BE2; }
+            66% { color: #FF69B4; }
+            100% { color: #FF00FF; }
+        }
     </style>
 </head>
 <body>
@@ -175,7 +188,7 @@
 
     <div class="button-container">
         <button class="button" id="actionButton">Presiona aquí</button>
-        <div class="message" id="message">Abre el sobre <br> y espera los audios </div> <br> 
+        <div class="message" id="message">Como ate los audífonos, Abre el sobre <br> y espera los audios </div> <br> 
         <div class="countdown" id="countdown"></div>
     </div>
 
@@ -224,7 +237,7 @@
             }, 1000);
         });
 
-        document.getElementById('audio1').addEventListener('ended', function() {
+        document.getElementById('audio1').addEventListener('ended', () => {
             document.getElementById('audio2').play();
         });
     </script>
