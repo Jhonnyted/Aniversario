@@ -172,23 +172,12 @@
                 color: #FF00FF;
             }
         }
-
     </style>
 </head>
 <body>
 
     <h1>Feliz Aniversario</h1>
     <h2>Mi Amor</h2>
-
-    <div class="frases-container">
-        <div class="frases active">Cada día a tu lado es un regalo.</div>
-        <div class="frases">Gracias por ser mi compañera de vida.</div>
-        <div class="frases">Cada momento contigo es especial.</div>
-        <div class="frases">Eres incluso mejor de lo que soñé.</div>
-        <div class="frases">Cada pedacito de ti encaja conmigo.</div>
-        <div class="frases">¡Feliz primer aniversario!</div>
-        <div class="frases">🐻😘🐥😜</div>
-    </div>
 
     <div class="carousel">
         <div class="carousel-images">
@@ -210,19 +199,12 @@
         <div class="countdown" id="countdown"></div>
     </div>
 
-    <audio id="audio" src="Audio.m4a"></audio>
+    <audio id="audio1" src="Audio.m4a"></audio>
+    <audio id="audio2" src="Audio2.m4a"></audio>
 
     <script>
-        const frases = document.querySelectorAll('.frases');
         const elements = [...document.querySelectorAll('.carousel-images img, .carousel-video')];
         let currentIndex = 0;
-        let currentFrase = 0;
-
-        setInterval(() => {
-            frases[currentFrase].classList.remove('active');
-            currentFrase = (currentFrase + 1) % frases.length;
-            frases[currentFrase].classList.add('active');
-        }, 4000);
 
         setInterval(() => {
             elements[currentIndex].classList.remove('active');
@@ -242,15 +224,20 @@
         document.getElementById('actionButton').addEventListener('click', () => {
             document.getElementById('message').classList.add('active');
             document.getElementById('countdown').classList.add('active');
+
             let timeLeft = 20;
             const interval = setInterval(() => {
                 document.getElementById('countdown').textContent = `El audio comenzará en ${timeLeft}...`;
                 if (--timeLeft < 0) {
                     clearInterval(interval);
                     document.getElementById('countdown').textContent = '';
-                    document.getElementById('audio').play();
+                    document.getElementById('audio1').play();
                 }
             }, 1000);
+        });
+
+        document.getElementById('audio1').addEventListener('ended', function() {
+            document.getElementById('audio2').play();
         });
     </script>
 
