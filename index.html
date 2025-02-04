@@ -259,7 +259,11 @@
             elements[currentIndex].classList.add('active');
 
             if (elements[currentIndex].tagName === "VIDEO") {
-                elements[currentIndex].play();
+        const video = elements[currentIndex];  // Obtén el video actual
+        video.addEventListener('canplaythrough', () => {
+            // El video está listo para reproducirse sin interrupciones
+            video.play();
+        });
             }
         }, 4500);
 
