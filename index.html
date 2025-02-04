@@ -52,7 +52,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             color: #333;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5);
             width: 80%;
             text-align: center;
         }
@@ -88,7 +88,7 @@
             opacity: 0;
             transition: opacity 2s ease-in-out;
             object-fit: contain; /* Ajusta la imagen dentro del contenedor */
-            mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%); /* Efecto difuminado */
+            mask-image: radial-gradient(farthest-side, rgba(0, 0, 0, 1) 94%, rgba(0, 0, 0, 0) 100%); /* Efecto difuminado */
         }
 
         .carousel-images img.active {
@@ -227,8 +227,10 @@
         <div class="countdown" id="countdown"></div>
     </div>
 
-    <audio id="audio" src="Audio.m4a"></audio>
-    <audio id="audio2" src="Audio2.m4a"></audio>
+    <!-- Primer audio -->
+    <audio id="audio1" src="Audio.m4a"></audio>
+    <!-- Segundo audio -->
+    <audio id="audio2" src="Audio2.m4a"></audio> <!-- Cambia "Audio2.m4a" por la ruta de tu segundo audio -->
 
     <script>
         const frases = document.querySelectorAll('.frases');
@@ -251,7 +253,7 @@
         const button = document.getElementById('actionButton');
         const message = document.getElementById('message');
         const countdown = document.getElementById('countdown');
-        const audio = document.getElementById('audio');
+        const audio1 = document.getElementById('audio1');
         const audio2 = document.getElementById('audio2');
 
         button.addEventListener('click', () => {
@@ -266,13 +268,14 @@
                 if (timeLeft <= 0) {
                     clearInterval(interval);
                     countdown.textContent = '';
-                    audio.play();
+                    audio1.play();
+
+                    // Reproducir el segundo audio cuando termine el primero
+                    audio1.onended = () => {
+                        audio2.play();
+                    };
                 }
             }, 1000);
-        });
-
-        audio.addEventListener('ended', () => {
-            audio2.play(); // Reproducir el segundo audio después del primero.
         });
     </script>
 
