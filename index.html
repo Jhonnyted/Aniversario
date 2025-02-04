@@ -246,7 +246,7 @@
             frases[currentFrase].classList.remove('active');
             currentFrase = (currentFrase + 1) % frases.length;
             frases[currentFrase].classList.add('active');
-        }, 4000);
+        }, 4500);
 
         setInterval(() => {
             elements[currentIndex].classList.remove('active');
@@ -265,7 +265,7 @@
             video.play();
         });
             }
-        }, 4500);
+        }, 5000);
 
         const button = document.getElementById('actionButton');
         const message = document.getElementById('message');
